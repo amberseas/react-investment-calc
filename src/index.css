@@ -19,7 +19,6 @@ body {
   margin: 3rem auto;
 }
 
-
 #header img {
   width: 5rem;
   height: 5rem;
@@ -32,7 +31,7 @@ body {
 }
 
 #user-input {
-  padding: 1rem;
+  padding: 2rem;
   max-width: 30rem;
   margin: 2rem auto;
   border-radius: 4px;
@@ -42,7 +41,7 @@ body {
 .input-group {
   display: flex;
   justify-content: space-evenly;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 #user-input label {
