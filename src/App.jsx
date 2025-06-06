@@ -1,4 +1,5 @@
 import InvestmentParameters from "./components/InvestmentParameters";
+import InvestmentResultsTable from "./components/InvestmentResultsTable";
 
 function App () {
   return (
@@ -12,6 +13,9 @@ function App () {
           <InvestmentParameters name='Expected return' type='number' parameters={{min: '0'}} />
           <InvestmentParameters name='Duration' type='number' parameters={{min: '0'}} />
         </div>
+      </div>
+      <div id="result">
+        <InvestmentResultsTable />
       </div>
     </main >
   );
