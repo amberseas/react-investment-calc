@@ -1,37 +1,28 @@
 import {useState} from "react";
-import InvestmentParameters from "./components/InvestmentParameters";
+import InvestmentParameters from "./components/InputField";
 import InvestmentResultsTable from "./components/InvestmentResultsTable";
+import UserInput from "./components/UserInput";
 
 function App () {
-  const [investmentParameters, setInvestmentParameters] = useState({
-    initialInvestment: null,
-    annualInvestment: null,
-    expectedReturn: null,
-    duration: null,
+  const [userInput, setUserInput] = useState({
+    initialInvestment: 10000,
+    annualInvestment: 1200,
+    expectedReturn: 6,
+    duration: 10,
   });
 
-  const handleInvestmentParametersChange = (name, value) => {
-    setInvestmentParameters(prevParams => {
-      const newParams = {...prevParams, [name]: value};
-      return newParams;
+  const handleUserInputChange = (name, value) => {
+    setUserInput(prevParams => {
+      return {...prevParams, [name]: value};
     });
   };
   return (
     <main>
-      <div id="user-input">
-        <div className="input-group">
-          <InvestmentParameters label='Initial investment' name='initialInvestment' type='number' parameters={{min: '0'}} onChange={handleInvestmentParametersChange} />
-          <InvestmentParameters label='Annual investment' name='annualInvestment' type='number' parameters={{min: '0'}} onChange={handleInvestmentParametersChange} />
-        </div>
-        <div className="input-group">
-          <InvestmentParameters label='Expected return' name='expectedReturn' type='number' parameters={{min: '0'}} onChange={handleInvestmentParametersChange} />
-          <InvestmentParameters label='Duration' name='duration' type='number' parameters={{min: '0'}} onChange={handleInvestmentParametersChange} />
-        </div>
-      </div>
-      {investmentParameters.duration !== null && investmentParameters.duration <= 1 && <p>Duration must be greater than 1.</p>}
-      <div id="result">
-        <InvestmentResultsTable investParams={investmentParameters} />
-      </div>
+      <UserInput userInput={userInput} onChange={handleUserInputChange} />
+      {userInput.duration !== null && userInput.duration <= 1 && <p>Duration must be greater than 1.</p>}
+      <section id="result">
+        <InvestmentResultsTable investParams={userInput} />
+      </section>
     </main >
   );
 }
