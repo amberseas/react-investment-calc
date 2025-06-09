@@ -1,8 +1,11 @@
-export default function InvestmentParameters ({name, type, parameters}) {
+export default function InvestmentParameters ({label, name, type, parameters, onChange}) {
+    const handleParamsChange = (e) => {
+        onChange(name, parseInt(e.target.value));
+    };
     return (
         <div>
-            <label htmlFor={name}>{name}</label>
-            <input id={name} type={type} {...parameters} />
+            <label htmlFor={label}>{label}</label>
+            <input id={label} type={type} {...parameters} onChange={handleParamsChange} />
         </div>
     );
 }

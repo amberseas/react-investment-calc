@@ -1,6 +1,11 @@
+import {calculateInvestmentResults} from "../util/investment";
 import InvestmentResult from "./InvestmentResult";
 
-export default function InvestmentResultsTable () {
+export default function InvestmentResultsTable ({investParams}) {
+    const annualData = calculateInvestmentResults(investParams);
+    let totalInterest = 0;
+    let totalInvestment = investParams.initialInvestment;
+
     return (
         <table>
             <thead>
@@ -13,7 +18,12 @@ export default function InvestmentResultsTable () {
                 </tr>
             </thead>
             <tbody>
-                <InvestmentResult year={1} value={1234} interest={12356} totalInterest={12546} invested={23354} />
+                {Object.values(investParams).every(val => val > 0) && annualData.map(data => {
+                    totalInterest += data.interest;
+                    totalInvestment += investParams.annualInvestment;
+                    return <InvestmentResult key={data.year} year={data.year} value={data.valueEndOfYear} interest={data.interest} totalInterest={totalInterest} invested={totalInvestment} />;
+                })}
+
             </tbody>
         </table>
     );
