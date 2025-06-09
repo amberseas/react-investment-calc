@@ -1,6 +1,6 @@
 export default function InputField ({label, name, value, type, parameters, onChange}) {
     const handleParamsChange = (e) => {
-        onChange(name, parseInt(e.target.value));
+        onChange(name, e.target.value);
     };
     return (
         <p>

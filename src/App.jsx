@@ -1,7 +1,6 @@
 import {useState} from "react";
-import InvestmentParameters from "./components/InputField";
-import InvestmentResultsTable from "./components/InvestmentResultsTable";
 import UserInput from "./components/UserInput";
+import ResultsTable from "./components/ResultsTable";
 
 function App () {
   const [userInput, setUserInput] = useState({
@@ -13,16 +12,14 @@ function App () {
 
   const handleUserInputChange = (name, value) => {
     setUserInput(prevParams => {
-      return {...prevParams, [name]: value};
+      return {...prevParams, [name]: +value};
     });
   };
   return (
     <main>
       <UserInput userInput={userInput} onChange={handleUserInputChange} />
       {userInput.duration !== null && userInput.duration <= 1 && <p>Duration must be greater than 1.</p>}
-      <section id="result">
-        <InvestmentResultsTable investParams={userInput} />
-      </section>
+      <ResultsTable investParams={userInput} />
     </main >
   );
 }

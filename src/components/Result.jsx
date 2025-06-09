@@ -1,6 +1,6 @@
 import {formatter} from "../util/investment";
 
-export default function InvestmentResult ({year, value, interest, totalInterest, invested}) {
+export default function Result ({year, value, interest, totalInterest, invested}) {
     return (
         <tr>
             <td>{year}</td>
