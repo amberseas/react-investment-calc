@@ -10,6 +10,8 @@ function App () {
     duration: 10,
   });
 
+  const isValid = userInput.duration >= 1;
+
   const handleUserInputChange = (name, value) => {
     setUserInput(prevParams => {
       return {...prevParams, [name]: +value};
@@ -18,8 +20,7 @@ function App () {
   return (
     <main>
       <UserInput userInput={userInput} onChange={handleUserInputChange} />
-      {userInput.duration !== null && userInput.duration <= 1 && <p>Duration must be greater than 1.</p>}
-      <ResultsTable investParams={userInput} />
+      {isValid ? <ResultsTable investParams={userInput} /> : <p className="center">Duration must be greater than 1 year.</p>}
     </main >
   );
 }
